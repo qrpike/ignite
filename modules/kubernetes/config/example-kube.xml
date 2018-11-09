@@ -40,5 +40,19 @@
                 </property>
             </bean>
         </property>
+      
+        <!-- Redefining maximum memory size for the cluster node usage. -->  
+        <property name="dataStorageConfiguration">
+          <bean class="org.apache.ignite.configuration.DataStorageConfiguration">
+            <!-- Redefining the default region's settings -->
+            <property name="defaultDataRegionConfiguration">
+              <bean class="org.apache.ignite.configuration.DataRegionConfiguration">
+                <property name="name" value="Default_Region"/>
+                <!-- Setting the size of the default region to 4GB. -->
+                <property name="maxSize" value="#{4L * 1024 * 1024 * 1024}"/>
+              </bean>
+            </property>
+          </bean>
+        </property>
     </bean>
 </beans>
